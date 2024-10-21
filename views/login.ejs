@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Styleslogin.css">
+  <title>Pemnbuatan Akun Mahasiswa Baru Sistem Informasi Kelautan 2024</title>
+</head>
+<body>
+  <div class="container">
+    <video autoplay muted loop id="background-video">
+      <source src="/video-indonesia.mp4" type="video/mp4">
+    </video>
+    <h2>Daftar Akun Mahasiswa Baru SIK</h2>
+    <form action="/auth/login" method="POST">
+      <label for="username">Masukan Username Kalian</label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      
+      <label for="kelas">Masukan Kelas Anda</label>
+      <select name="kelas" id="kelas" required>
+        <option value="">--Pilih Kelas--</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+      <script>
+        const kelas = document.getElementById('kelas');
+        const selected = document.cookie.split(';').filter(item => item.trim().startsWith('kelas=')).reduce((prev, current) => current.split('=')[1], '');
+        kelas.value = selected;
+        kelas.addEventListener('change', function() {
+          const selected = kelas.options[kelas.selectedIndex].value;
+          document.cookie = `kelas=${selected}`;
+        });
+      </script>
+      
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/auth/register">Register here</a></p>
+  </div>
+</body>
+</html>
+
